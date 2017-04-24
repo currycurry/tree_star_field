@@ -50,7 +50,7 @@ void ofApp::setup(){
     shader.load("shaders/shader");
 #endif
     
-    bFullscreen = false;
+    bFullscreen = true;
     
     // === FBO =============================
     
@@ -84,6 +84,8 @@ void ofApp::setup(){
     tree_video.setPixelFormat(OF_PIXELS_RGBA);
     tree_video.load("silhouette_2_14.mov");
     tree_video.setLoopState( OF_LOOP_NONE );
+    video_speed = 0.79;
+    tree_video.setSpeed( video_speed );
     
     tree_opacity = 0;
     tree_opacity_increment = 0.0;
@@ -109,7 +111,7 @@ void ofApp::setup(){
     currentTime = startTime;
     lastTime = 0;
     colorTime = 0;
-    float minutes = 6.3;
+    float minutes = 8.5;
     imgWidth = topPaletteImage.getWidth();
     cycleDuration = 1000 * 60 * minutes;
     colorDuration = cycleDuration / imgWidth;
@@ -131,11 +133,11 @@ void ofApp::setup(){
     idle_audio.load( "Tree_External_Idle_Norm.wav" );
     idle_audio.setLoop( true );
     idle_volume = 0.0;
-    idle_max_volume = 1.0;
+    idle_max_volume = .60;
     idle_audio.setVolume( idle_volume );
     idle_audio.play();
     
-    tree_audio.load( "Tree_External_Main_Norm.wav" );
+    tree_audio.load( "Tree_External_Main_New.wav" );
     tree_audio.setLoop( false );
     tree_volume = 0.0;
     tree_audio.setVolume( tree_volume );
@@ -143,7 +145,9 @@ void ofApp::setup(){
 
     // === Vignette Mask =============================
     vignette.allocate( 1280, 800, OF_IMAGE_COLOR_ALPHA );
-    vignette.load( "vignette_1.png" );
+    vignette.load( "vig_3.png" );
+    
+    ofHideCursor();
 
 
 }
@@ -237,6 +241,7 @@ void ofApp::update(){
         tree_audio.setVolume( 1.0 );
         tree_audio.play();
         tree_video.setPosition( 0.0 );
+        tree_video.setSpeed( video_speed );
         tree_video.play();
         transSpeed = 0.0;
         toTopColor = ofColor( 0 );
@@ -354,7 +359,7 @@ void ofApp::update(){
             
         }
         
-        if ( tree_video.getPosition() >= .78 ) {
+        if ( tree_video.getPosition() >= .87 ) {
             
             showState = 2;
             
@@ -380,7 +385,7 @@ void ofApp::update(){
             
         }
         
-        if ( tree_video.getPosition() >= .89 ) {
+        if ( tree_video.getPosition() >= .96 ) {
             
             showState = 3;
             

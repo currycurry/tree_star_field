@@ -75,6 +75,7 @@ class ofApp : public ofBaseApp{
         int frame_x, frame_y, frame_w, frame_h;
         int tree_opacity;
         float tree_opacity_increment;
+        float video_speed;
     
         int star_opacity;
         float star_opacity_increment;
